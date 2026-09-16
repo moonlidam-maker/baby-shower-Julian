@@ -50,14 +50,15 @@
       background: linear-gradient(160deg, #c9e7ff, #eaf6ff 60%, #f0f9ff);
     }
     .hero .elefante {
-      width: 180px; height: 180px;
+      width: 220px; height: 220px;
       margin: 0 auto 20px;
-      background: #a8d4f0;
-      border-radius: 50%;
       display: flex; align-items: center; justify-content: center;
-      font-size: 85px;
-      box-shadow: 0 8px 25px rgba(58,143,201,0.3);
-      border: 5px solid white;
+      overflow: hidden;
+    }
+    .hero .elefante img {
+      width: 100%; height: 100%;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(58,143,201,0.3));
     }
     .hero h1 {
       font-family: 'Dancing Script', cursive;
@@ -81,8 +82,21 @@
       font-size: 38px; color: #3a8fc9; text-align: center; margin-bottom: 12px;
     }
     .seccion p { font-size: 17px; line-height: 1.7; text-align: center; }
-    .seccion img { width: 100%; max-width: 280px; border-radius: 18px; margin: 0 auto 15px; display: block;
-                   box-shadow: 0 6px 18px rgba(0,0,0,0.1); }
+
+    /* Imagen del sobre con letra elegante */
+    .sobre-img {
+      width: 100%; max-width: 280px; margin: 0 auto 20px; display: block;
+      filter: drop-shadow(0 6px 18px rgba(0,0,0,0.12));
+    }
+    .mensaje-regalo {
+      font-family: 'Dancing Script', cursive;
+      font-size: 26px;
+      color: #3a8fc9;
+      line-height: 1.6;
+      text-align: center;
+      max-width: 420px;
+      margin: 0 auto;
+    }
 
     /* Cuenta regresiva */
     .contador { display: flex; justify-content: center; gap: 15px; margin-top: 15px; flex-wrap: wrap; }
@@ -92,7 +106,16 @@
     .contador span { display: block; font-size: 30px; font-weight: 700; color: #3a8fc9; }
     .contador small { font-size: 13px; color: #2a6d9e; }
 
+    /* Mapa */
     .mapa iframe { width: 100%; height: 280px; border: 0; border-radius: 15px; margin-top: 15px; }
+    .descripcion-mapa {
+      font-family: 'Dancing Script', cursive;
+      font-size: 24px;
+      color: #2a6d9e;
+      text-align: center;
+      margin-top: 15px;
+      line-height: 1.5;
+    }
 
     .btn {
       display: inline-block; background: #3a8fc9; color: white;
@@ -114,10 +137,12 @@
 <body>
 
   <div class="hero">
-    <div class="elefante animar">🐘</div>
+    <div class="elefante animar">
+      <img src="elefante.png" alt="Elefantito con globo">
+    </div>
     <h1 class="animar d1">¡Nos llega un bebé!</h1>
-    <p class="animar d2">Baby shower de <strong>[Nombre del bebé]</strong></p>
-    <div class="fecha animar d3">📅 [Fecha] &nbsp; ⏰ [Hora]</div>
+    <p class="animar d2">Baby shower de <strong>Julián</strong></p>
+    <div class="fecha animar d3">📅 Sábado 19 de septiembre &nbsp; ⏰ 2:00 PM</div>
   </div>
 
   <div class="contenedor">
@@ -139,16 +164,16 @@
 
     <div class="seccion animar">
       <h2>📍 Ubicación</h2>
-      <p>[Dirección del lugar]</p>
       <div class="mapa">
-        <!-- Aquí va el mapa de Google -->
+        <iframe src="https://www.google.com/maps?q=Veterinaria+Guzman+Cuenca&output=embed" allowfullscreen loading="lazy"></iframe>
       </div>
+      <p class="descripcion-mapa">Veterinaria Guzmán, a mano izquierda por el camino de tierra</p>
     </div>
 
     <div class="seccion animar">
-      <img src="sobre.png" alt="Sobre de dinero">
+      <img class="sobre-img" src="sobre.png" alt="Sobre de dinero">
       <h2>💌 Detalles</h2>
-      <p>En lugar de regalos, tendremos un <strong>sobre para aportes voluntarios</strong>. Su ayuda será muy bienvenida y agradecida. 💙</p>
+      <p class="mensaje-regalo">Te dejamos un sobre para tu regalito,<br>será muy bienvenido, ¡gracias! 💙</p>
     </div>
 
     <div class="boton-centro animar">
@@ -160,8 +185,8 @@
   <div class="footer">🐘 ¡Te esperamos con cariño! 🐘</div>
 
   <script>
-    // Cuenta regresiva: cambia esta fecha por la de tu evento
-    var fechaEvento = new Date("2026-10-01T15:00:00").getTime();
+    // Cuenta regresiva: sábado 19 de septiembre de 2026 a las 2:00 PM
+    var fechaEvento = new Date("2026-09-19T14:00:00").getTime();
     var contador = setInterval(function() {
       var ahora = new Date().getTime();
       var distancia = fechaEvento - ahora;
